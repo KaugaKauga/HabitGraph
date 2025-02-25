@@ -17,7 +17,7 @@ const Graph = () => {
       {data.map((day, index) => (
         <div
           key={index}
-          className="w-3 h-3 bg-emerald-400"
+          className="w-4 h-4 bg-emerald-400 hover:shadow-md hover:shadow-yellow-400"
           title={`${day.date.toDateString()}: ${day.count} contributions`}
         />
       ))}
