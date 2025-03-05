@@ -18,11 +18,11 @@ const generateDummyData = () => {
 const Graph = ({ color = "purple" }: GraphProps) => {
   const data = generateDummyData();
   return (
-    <div className="grid grid-cols-20 grid-rows-5 gap-2">
+    <div className="grid grid-cols-20 grid-rows-5 gap-1 w-ful">
       {data.map((day, index) => (
         <div
           key={index}
-          className={`w-4 h-4 ${getColorClass(
+          className={`w-3 h-3 ${getColorClass(
             day.count,
             color
           )} hover:shadow-md hover:shadow-purple-400`}
