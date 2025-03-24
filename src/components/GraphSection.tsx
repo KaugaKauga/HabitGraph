@@ -1,3 +1,4 @@
+import { useGraphStore } from "../store";
 import { ColorType, getTextColorClass } from "../utils/colorUtils";
 import { Graph } from "./Graph";
 
@@ -8,6 +9,10 @@ type GraphProps = {
 
 const GraphSection = ({ color, title }: GraphProps) => {
   const textColor = getTextColorClass(color);
+  const { addEntry } = useGraphStore();
+
+  const entry = { id: "entry-100", categoryId: "TEST-CAT", date: "2025-03-24" };
+
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-2 justify-between">
@@ -18,6 +23,7 @@ const GraphSection = ({ color, title }: GraphProps) => {
           stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
+          onClick={() => addEntry({ categoryId: "TEST-CAT", entry })}
         >
           <path
             strokeLinecap="round"
