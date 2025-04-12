@@ -9,9 +9,9 @@ function App() {
       <div>
         <h1 className="text-4xl font-bold text-stone-300">HabitGraph</h1>
       </div>
-      <GraphSection color="emerald" title="Veg meals" />
-      <GraphSection color="purple" title="Work out" />
-      <GraphSection color="fuchsia" title="Fuchsia" />
+      {Object.entries(graphs).map(([key, graph]) => (
+        <GraphSection key={key} graph={graph} />
+      ))}
     </div>
   );
 }

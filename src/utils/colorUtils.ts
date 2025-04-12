@@ -24,11 +24,12 @@ export type ColorType =
 
 export const getColorClass = (
   count: number,
-  color: ColorType = "purple"
+  color: ColorType = "purple",
 ): string => {
+  const _count = count > 7 ? 7 : count;
   const colorMap: Record<ColorType, Record<number, string>> = {
     slate: {
-      0: "bg-slate-200",
+      0: "bg-stone-200",
       1: "bg-slate-300",
       2: "bg-slate-400",
       3: "bg-slate-500",
@@ -38,7 +39,7 @@ export const getColorClass = (
       7: "bg-slate-900",
     },
     gray: {
-      0: "bg-gray-200",
+      0: "bg-stone-200",
       1: "bg-gray-300",
       2: "bg-gray-400",
       3: "bg-gray-500",
@@ -48,7 +49,7 @@ export const getColorClass = (
       7: "bg-gray-900",
     },
     zinc: {
-      0: "bg-zinc-200",
+      0: "bg-stone-200",
       1: "bg-zinc-300",
       2: "bg-zinc-400",
       3: "bg-zinc-500",
@@ -58,7 +59,7 @@ export const getColorClass = (
       7: "bg-zinc-900",
     },
     neutral: {
-      0: "bg-neutral-200",
+      0: "bg-stone-200",
       1: "bg-neutral-300",
       2: "bg-neutral-400",
       3: "bg-neutral-500",
@@ -78,7 +79,7 @@ export const getColorClass = (
       7: "bg-stone-900",
     },
     red: {
-      0: "bg-red-200",
+      0: "bg-stone-200",
       1: "bg-red-300",
       2: "bg-red-400",
       3: "bg-red-500",
@@ -88,7 +89,7 @@ export const getColorClass = (
       7: "bg-red-900",
     },
     orange: {
-      0: "bg-orange-200",
+      0: "bg-stone-200",
       1: "bg-orange-300",
       2: "bg-orange-400",
       3: "bg-orange-500",
@@ -98,7 +99,7 @@ export const getColorClass = (
       7: "bg-orange-900",
     },
     amber: {
-      0: "bg-amber-200",
+      0: "bg-stone-200",
       1: "bg-amber-300",
       2: "bg-amber-400",
       3: "bg-amber-500",
@@ -108,7 +109,7 @@ export const getColorClass = (
       7: "bg-amber-900",
     },
     yellow: {
-      0: "bg-yellow-200",
+      0: "bg-stone-200",
       1: "bg-yellow-300",
       2: "bg-yellow-400",
       3: "bg-yellow-500",
@@ -118,7 +119,7 @@ export const getColorClass = (
       7: "bg-yellow-900",
     },
     lime: {
-      0: "bg-lime-200",
+      0: "bg-stone-200",
       1: "bg-lime-300",
       2: "bg-lime-400",
       3: "bg-lime-500",
@@ -128,7 +129,7 @@ export const getColorClass = (
       7: "bg-lime-900",
     },
     green: {
-      0: "bg-green-200",
+      0: "bg-stone-200",
       1: "bg-green-300",
       2: "bg-green-400",
       3: "bg-green-500",
@@ -138,7 +139,7 @@ export const getColorClass = (
       7: "bg-green-900",
     },
     emerald: {
-      0: "bg-emerald-200",
+      0: "bg-stone-200",
       1: "bg-emerald-300",
       2: "bg-emerald-400",
       3: "bg-emerald-500",
@@ -148,7 +149,7 @@ export const getColorClass = (
       7: "bg-emerald-900",
     },
     teal: {
-      0: "bg-teal-200",
+      0: "bg-stone-200",
       1: "bg-teal-300",
       2: "bg-teal-400",
       3: "bg-teal-500",
@@ -158,7 +159,7 @@ export const getColorClass = (
       7: "bg-teal-900",
     },
     cyan: {
-      0: "bg-cyan-200",
+      0: "bg-stone-200",
       1: "bg-cyan-300",
       2: "bg-cyan-400",
       3: "bg-cyan-500",
@@ -168,7 +169,7 @@ export const getColorClass = (
       7: "bg-cyan-900",
     },
     sky: {
-      0: "bg-sky-200",
+      0: "bg-stone-200",
       1: "bg-sky-300",
       2: "bg-sky-400",
       3: "bg-sky-500",
@@ -178,7 +179,7 @@ export const getColorClass = (
       7: "bg-sky-900",
     },
     blue: {
-      0: "bg-blue-200",
+      0: "bg-stone-200",
       1: "bg-blue-300",
       2: "bg-blue-400",
       3: "bg-blue-500",
@@ -188,7 +189,7 @@ export const getColorClass = (
       7: "bg-blue-900",
     },
     indigo: {
-      0: "bg-indigo-200",
+      0: "bg-stone-200",
       1: "bg-indigo-300",
       2: "bg-indigo-400",
       3: "bg-indigo-500",
@@ -198,7 +199,7 @@ export const getColorClass = (
       7: "bg-indigo-900",
     },
     violet: {
-      0: "bg-violet-200",
+      0: "bg-stone-200",
       1: "bg-violet-300",
       2: "bg-violet-400",
       3: "bg-violet-500",
@@ -208,7 +209,7 @@ export const getColorClass = (
       7: "bg-violet-900",
     },
     purple: {
-      0: "bg-purple-200",
+      0: "bg-stone-200",
       1: "bg-purple-300",
       2: "bg-purple-400",
       3: "bg-purple-500",
@@ -218,7 +219,7 @@ export const getColorClass = (
       7: "bg-purple-900",
     },
     fuchsia: {
-      0: "bg-fuchsia-200",
+      0: "bg-stone-200",
       1: "bg-fuchsia-300",
       2: "bg-fuchsia-400",
       3: "bg-fuchsia-500",
@@ -228,7 +229,7 @@ export const getColorClass = (
       7: "bg-fuchsia-900",
     },
     pink: {
-      0: "bg-pink-200",
+      0: "bg-stone-200",
       1: "bg-pink-300",
       2: "bg-pink-400",
       3: "bg-pink-500",
@@ -238,7 +239,7 @@ export const getColorClass = (
       7: "bg-pink-900",
     },
     rose: {
-      0: "bg-rose-200",
+      0: "bg-stone-200",
       1: "bg-rose-300",
       2: "bg-rose-400",
       3: "bg-rose-500",
@@ -249,7 +250,7 @@ export const getColorClass = (
     },
   };
 
-  return colorMap[color][count] || colorMap[color][0];
+  return colorMap[color][_count] || colorMap[color][0];
 };
 
 export const getTextColorClass = (color: ColorType = "purple"): string => {

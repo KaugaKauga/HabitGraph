@@ -1,29 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-type GraphEntry = {
-  id: string;
-  categoryId: string;
-  date: string;
-};
-
-type GraphContainer = {
-  id: string;
-  color: string;
-  name: string;
-  data: GraphEntry[];
-};
-
-type GraphSlice = {
-  graphs: { [key: string]: GraphContainer };
-  addEntry: ({
-    entry,
-    categoryId,
-  }: {
-    entry: GraphEntry;
-    categoryId: string;
-  }) => void;
-};
+import { GraphSlice } from "./types";
 
 const useGraphStore = create<GraphSlice>()(
   persist(
@@ -38,6 +15,11 @@ const useGraphStore = create<GraphSlice>()(
             { id: "entry-2", categoryId: "TEST-CAT", date: "2025-03-25" },
           ],
         },
+      },
+      getGraphById: ({ categoryId }) => {
+        const graphs = get().graphs;
+
+        return graphs[categoryId];
       },
       addEntry: ({ entry, categoryId }) =>
         set((state) => {
