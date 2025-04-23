@@ -1,25 +1,35 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { GraphSlice } from "./types";
+import { GraphContainer, GraphSlice } from "./types";
+import { nanoid } from "nanoid";
 
 const useGraphStore = create<GraphSlice>()(
   persist(
     (set, get) => ({
-      graphs: {
-        "TEST-CAT": {
-          id: "TEST-CAT",
-          color: "emerald",
-          name: "Veg days",
-          data: [
-            { id: "entry-1", categoryId: "TEST-CAT", date: "2025-03-24" },
-            { id: "entry-2", categoryId: "TEST-CAT", date: "2025-03-25" },
-          ],
-        },
-      },
+      graphs: {},
       getGraphById: ({ categoryId }) => {
         const graphs = get().graphs;
 
         return graphs[categoryId];
+      },
+      addGraph: ({ name, isTrueFalse, isHigherBetter, color }) => {
+        set((state) => {
+          const categoryId = nanoid();
+          const graphContainer: GraphContainer = {
+            id: categoryId,
+            color,
+            isTrueFalse,
+            isHigherBetter,
+            name,
+            data: [],
+          };
+          return {
+            graphs: {
+              ...state.graphs,
+              [categoryId]: graphContainer,
+            },
+          };
+        });
       },
       addEntry: ({ entry, categoryId }) =>
         set((state) => {

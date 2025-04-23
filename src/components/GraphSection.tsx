@@ -16,7 +16,7 @@ const GraphSection = ({ graph }: GraphProps) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex items-center gap-2 justify-between">
+      <div className="flex items-center gap-2 justify-between mb-2">
         <h2 className={`text-2xl font-bold lowercase ${textColor}`}>
           {graph.name}
         </h2>

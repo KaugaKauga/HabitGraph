@@ -11,6 +11,8 @@ export type GraphContainer = {
   color: ColorType;
   name: string;
   data: GraphEntry[];
+  isHigherBetter: boolean;
+  isTrueFalse: boolean;
 };
 
 export type GraphSlice = {
@@ -23,4 +25,15 @@ export type GraphSlice = {
     categoryId: string;
   }) => void;
   getGraphById: ({ categoryId }: { categoryId: string }) => GraphContainer;
+  addGraph: ({
+    name,
+    isTrueFalse,
+    isHigherBetter,
+    color,
+  }: {
+    name: string;
+    isTrueFalse: boolean;
+    isHigherBetter: boolean;
+    color: ColorType;
+  }) => void;
 };

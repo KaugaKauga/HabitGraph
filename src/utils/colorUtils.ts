@@ -281,3 +281,28 @@ export const getTextColorClass = (color: ColorType = "purple"): string => {
 
   return textColorMap[color] || "text-purple-200";
 };
+
+export const colorTypes: ColorType[] = [
+  "slate",
+  "gray",
+  "zinc",
+  "neutral",
+  "stone",
+  "red",
+  "orange",
+  "amber",
+  "yellow",
+  "lime",
+  "green",
+  "emerald",
+  "teal",
+  "cyan",
+  "sky",
+  "blue",
+  "indigo",
+  "violet",
+  "purple",
+  "fuchsia",
+  "pink",
+  "rose",
+];
