@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { GraphSection } from "./components/GraphSection";
+import { HabitSection } from "./components/HabitSection";
 import { useGraphStore } from "./store";
 import chartBar from "./assets/chart-bar.svg";
 import gear from "./assets/gear.svg";
@@ -17,13 +17,13 @@ function App() {
         <Link className="link text-sand-300" to="/statistics">
           <img src={chartBar} alt="Statistics" className="size-[1.2em]" />
         </Link>
-        <Link className="link" to="/create-category">
+        <Link className="link" to="/create-habit">
           <img src={plus} alt="Add Category" className="size-[1.2em]" />
         </Link>
       </div>
       <div className="flex-1 overflow-y-auto space-y-4 justify-center flex flex-col items-center">
-        {Object.entries(graphs).map(([key, graph]) => (
-          <GraphSection key={key} graph={graph} />
+        {Object.entries(graphs).map(([key, habit]) => (
+          <HabitSection key={key} habit={habit} />
         ))}
       </div>
     </div>

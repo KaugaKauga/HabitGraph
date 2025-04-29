@@ -3,7 +3,7 @@ import { useGraphStore } from "../../store";
 import { useNavigate } from "@tanstack/react-router";
 import { ColorType, colorTypes, getColorClass } from "../../utils/colorUtils";
 
-const CreateCategory = () => {
+const CreateHabit = () => {
   const { addGraph } = useGraphStore();
   const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement>(null);
@@ -78,4 +78,4 @@ const CreateCategory = () => {
   );
 };
 
-export { CreateCategory };
+export { CreateHabit };

@@ -1,30 +1,30 @@
 import { ColorType } from "./utils/colorUtils";
 
-export type GraphEntry = {
+export type HabitEntry = {
   id: string;
   categoryId: string;
   date: string;
 };
 
-export type GraphContainer = {
+export type Habit = {
   id: string;
   color: ColorType;
   name: string;
-  data: GraphEntry[];
+  data: HabitEntry[];
   isHigherBetter: boolean;
   isTrueFalse: boolean;
 };
 
-export type GraphSlice = {
-  graphs: { [key: string]: GraphContainer };
+export type HabitSlice = {
+  graphs: { [key: string]: Habit };
   addEntry: ({
     entry,
     categoryId,
   }: {
-    entry: GraphEntry;
+    entry: HabitEntry;
     categoryId: string;
   }) => void;
-  getGraphById: ({ categoryId }: { categoryId: string }) => GraphContainer;
+  getGraphById: ({ categoryId }: { categoryId: string }) => Habit;
   addGraph: ({
     name,
     isTrueFalse,

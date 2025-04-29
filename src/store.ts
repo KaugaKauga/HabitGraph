@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { GraphContainer, GraphSlice } from "./types";
+import { Habit, HabitSlice } from "./types";
 import { nanoid } from "nanoid";
 
-const useGraphStore = create<GraphSlice>()(
+const useGraphStore = create<HabitSlice>()(
   persist(
     (set, get) => ({
       graphs: {},
@@ -15,7 +15,7 @@ const useGraphStore = create<GraphSlice>()(
       addGraph: ({ name, isTrueFalse, isHigherBetter, color }) => {
         set((state) => {
           const categoryId = nanoid();
-          const graphContainer: GraphContainer = {
+          const graphContainer: Habit = {
             id: categoryId,
             color,
             isTrueFalse,
@@ -49,7 +49,7 @@ const useGraphStore = create<GraphSlice>()(
         }),
     }),
     {
-      name: "graph-storage",
+      name: "habit-storage",
     },
   ),
 );

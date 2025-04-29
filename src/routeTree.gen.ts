@@ -13,7 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as StatisticsImport } from './routes/statistics'
 import { Route as SettingsImport } from './routes/settings'
-import { Route as CreateCategoryImport } from './routes/create-category'
+import { Route as CreateHabitImport } from './routes/create-habit'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -30,9 +30,9 @@ const SettingsRoute = SettingsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const CreateCategoryRoute = CreateCategoryImport.update({
-  id: '/create-category',
-  path: '/create-category',
+const CreateHabitRoute = CreateHabitImport.update({
+  id: '/create-habit',
+  path: '/create-habit',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,11 +53,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/create-category': {
-      id: '/create-category'
-      path: '/create-category'
-      fullPath: '/create-category'
-      preLoaderRoute: typeof CreateCategoryImport
+    '/create-habit': {
+      id: '/create-habit'
+      path: '/create-habit'
+      fullPath: '/create-habit'
+      preLoaderRoute: typeof CreateHabitImport
       parentRoute: typeof rootRoute
     }
     '/settings': {
@@ -81,14 +81,14 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/create-category': typeof CreateCategoryRoute
+  '/create-habit': typeof CreateHabitRoute
   '/settings': typeof SettingsRoute
   '/statistics': typeof StatisticsRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/create-category': typeof CreateCategoryRoute
+  '/create-habit': typeof CreateHabitRoute
   '/settings': typeof SettingsRoute
   '/statistics': typeof StatisticsRoute
 }
@@ -96,30 +96,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/create-category': typeof CreateCategoryRoute
+  '/create-habit': typeof CreateHabitRoute
   '/settings': typeof SettingsRoute
   '/statistics': typeof StatisticsRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/create-category' | '/settings' | '/statistics'
+  fullPaths: '/' | '/create-habit' | '/settings' | '/statistics'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/create-category' | '/settings' | '/statistics'
-  id: '__root__' | '/' | '/create-category' | '/settings' | '/statistics'
+  to: '/' | '/create-habit' | '/settings' | '/statistics'
+  id: '__root__' | '/' | '/create-habit' | '/settings' | '/statistics'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CreateCategoryRoute: typeof CreateCategoryRoute
+  CreateHabitRoute: typeof CreateHabitRoute
   SettingsRoute: typeof SettingsRoute
   StatisticsRoute: typeof StatisticsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CreateCategoryRoute: CreateCategoryRoute,
+  CreateHabitRoute: CreateHabitRoute,
   SettingsRoute: SettingsRoute,
   StatisticsRoute: StatisticsRoute,
 }
@@ -135,7 +135,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/create-category",
+        "/create-habit",
         "/settings",
         "/statistics"
       ]
@@ -143,8 +143,8 @@ export const routeTree = rootRoute
     "/": {
       "filePath": "index.tsx"
     },
-    "/create-category": {
-      "filePath": "create-category.tsx"
+    "/create-habit": {
+      "filePath": "create-habit.tsx"
     },
     "/settings": {
       "filePath": "settings.tsx"

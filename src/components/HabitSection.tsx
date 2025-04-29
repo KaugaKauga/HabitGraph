@@ -1,24 +1,24 @@
 import { useGraphStore } from "../store";
-import { GraphContainer } from "../types";
+import { Habit } from "../types";
 import { getTextColorClass } from "../utils/colorUtils";
 import { nanoid } from "nanoid";
 import { Graph } from "./Graph";
 
-type GraphProps = {
-  graph: GraphContainer;
+type HabitProps = {
+  habit: Habit;
 };
 
-const GraphSection = ({ graph }: GraphProps) => {
-  const textColor = getTextColorClass(graph.color);
+const HabitSection = ({ habit }: HabitProps) => {
+  const textColor = getTextColorClass(habit.color);
   const { addEntry } = useGraphStore();
   const today = new Date().toISOString().slice(0, 10);
-  const entry = { id: nanoid(), categoryId: graph.id, date: today };
+  const entry = { id: nanoid(), categoryId: habit.id, date: today };
 
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-2 justify-between mb-2">
         <h2 className={`text-2xl font-bold lowercase ${textColor}`}>
-          {graph.name}
+          {habit.name}
         </h2>
         <svg
           className={`w-6 h-6 ${textColor}`}
@@ -26,7 +26,7 @@ const GraphSection = ({ graph }: GraphProps) => {
           stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          onClick={() => addEntry({ categoryId: graph.id, entry })}
+          onClick={() => addEntry({ categoryId: habit.id, entry })}
         >
           <path
             strokeLinecap="round"
@@ -36,9 +36,9 @@ const GraphSection = ({ graph }: GraphProps) => {
           />
         </svg>
       </div>
-      <Graph color={graph.color} entries={graph.data} />
+      <Graph color={habit.color} entries={habit.data} />
     </div>
   );
 };
 
-export { GraphSection };
+export { HabitSection };

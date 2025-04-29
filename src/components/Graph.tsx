@@ -1,9 +1,9 @@
-import { GraphEntry } from "../types";
+import { HabitEntry } from "../types";
 import { ColorType, getColorClass } from "../utils/colorUtils";
 
 type GraphProps = {
   color?: ColorType;
-  entries: GraphEntry[];
+  entries: HabitEntry[];
 };
 
 const generateLast100Days = () => {
@@ -15,7 +15,7 @@ const generateLast100Days = () => {
   }).reverse();
 };
 
-const prepareGraphData = (last100Days: string[], entries: GraphEntry[]) => {
+const prepareGraphData = (last100Days: string[], entries: HabitEntry[]) => {
   const dateMap: Record<string, number> = Object.fromEntries(
     last100Days.map((date) => [date, 0]),
   );
