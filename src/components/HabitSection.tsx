@@ -3,12 +3,14 @@ import { Habit } from "../types";
 import { getTextColorClass } from "../utils/colorUtils";
 import { nanoid } from "nanoid";
 import { Graph } from "./Graph";
+import { useNavigate } from "@tanstack/react-router";
 
 type HabitProps = {
   habit: Habit;
 };
 
 const HabitSection = ({ habit }: HabitProps) => {
+  const navigate = useNavigate();
   const textColor = getTextColorClass(habit.color);
   const { addEntry } = useGraphStore();
   const today = new Date().toISOString().slice(0, 10);
@@ -17,7 +19,12 @@ const HabitSection = ({ habit }: HabitProps) => {
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-2 justify-between mb-2">
-        <h2 className={`text-2xl font-bold lowercase ${textColor}`}>
+        <h2
+          className={`text-2xl font-bold lowercase ${textColor}`}
+          onClick={() =>
+            navigate({ to: "/habit/$habitId", params: { habitId: habit.id } })
+          }
+        >
           {habit.name}
         </h2>
         <svg

@@ -24,7 +24,7 @@ export type HabitSlice = {
     entry: HabitEntry;
     categoryId: string;
   }) => void;
-  getGraphById: ({ categoryId }: { categoryId: string }) => Habit;
+  getHabitById: ({ habitId }: { habitId: string }) => Habit;
   addGraph: ({
     name,
     isTrueFalse,

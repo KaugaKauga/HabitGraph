@@ -7,10 +7,10 @@ const useGraphStore = create<HabitSlice>()(
   persist(
     (set, get) => ({
       graphs: {},
-      getGraphById: ({ categoryId }) => {
+      getHabitById: ({ habitId }) => {
         const graphs = get().graphs;
 
-        return graphs[categoryId];
+        return graphs[habitId];
       },
       addGraph: ({ name, isTrueFalse, isHigherBetter, color }) => {
         set((state) => {
