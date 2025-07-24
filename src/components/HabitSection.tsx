@@ -53,32 +53,48 @@ const HabitSection = ({ habit }: HabitProps) => {
         >
           {habit.name}
         </h2>
-        {showCalendar && (
-          <calendar-date
-            ref={calendarRef}
-            class="cally bg-base-100 border border-base-300 shadow-lg rounded-box"
-          >
-            <svg
-              aria-label="Previous"
-              className="fill-current size-4"
-              slot="previous"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
+        {/* DaisyUI Modal */}
+        <div className={`modal ${showCalendar ? "modal-open" : ""}`}>
+          <div className="modal-box">
+            <h3 className="font-bold text-lg mb-4">Select Date</h3>
+            <calendar-date
+              ref={calendarRef}
+              class="cally bg-base-100 border border-base-300 shadow-lg rounded-box w-full"
             >
-              <path fill="currentColor" d="M15.75 19.5 8.25 12l7.5-7.5"></path>
-            </svg>
-            <svg
-              aria-label="Next"
-              className="fill-current size-4"
-              slot="next"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-            </svg>
-            <calendar-month></calendar-month>
-          </calendar-date>
-        )}
+              <svg
+                aria-label="Previous"
+                className="fill-current size-4"
+                slot="previous"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                ></path>
+              </svg>
+              <svg
+                aria-label="Next"
+                className="fill-current size-4"
+                slot="next"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path fill="currentColor" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+              </svg>
+              <calendar-month></calendar-month>
+            </calendar-date>
+            <div className="modal-action">
+              <button className="btn" onClick={() => setShowCalendar(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+          <div
+            className="modal-backdrop"
+            onClick={() => setShowCalendar(false)}
+          ></div>
+        </div>
         <svg
           className={`w-6 h-6 ${textColor} cursor-pointer`}
           fill="none"
