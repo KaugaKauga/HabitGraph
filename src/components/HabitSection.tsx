@@ -4,7 +4,8 @@ import { getTextColorClass } from "../utils/colorUtils";
 import { nanoid } from "nanoid";
 import { Graph } from "./Graph";
 import { useNavigate } from "@tanstack/react-router";
-
+import { useRef, useState, useEffect } from "react";
+import "cally";
 type HabitProps = {
   habit: Habit;
 };
@@ -13,8 +14,33 @@ const HabitSection = ({ habit }: HabitProps) => {
   const navigate = useNavigate();
   const textColor = getTextColorClass(habit.color);
   const { addEntry } = useGraphStore();
-  const today = new Date().toISOString().slice(0, 10);
-  const entry = { id: nanoid(), categoryId: habit.id, date: today };
+  const [showCalendar, setShowCalendar] = useState(false);
+  const calendarRef = useRef<any>(null);
+
+  const handleDateSelect = (event: any) => {
+    console.log("Date selected:", event);
+    const selectedDate = event.target.value;
+    console.log("Selected date value:", selectedDate);
+    if (selectedDate) {
+      const entry = { id: nanoid(), categoryId: habit.id, date: selectedDate };
+      addEntry({ categoryId: habit.id, entry });
+      setShowCalendar(false);
+    }
+  };
+
+  useEffect(() => {
+    const calendar = calendarRef.current;
+    if (calendar && showCalendar) {
+      calendar.addEventListener("change", handleDateSelect);
+      return () => {
+        calendar.removeEventListener("change", handleDateSelect);
+      };
+    }
+  }, [showCalendar, habit.id]);
+
+  const handleIconClick = () => {
+    setShowCalendar(!showCalendar);
+  };
 
   return (
     <div className="flex flex-col">
@@ -27,13 +53,39 @@ const HabitSection = ({ habit }: HabitProps) => {
         >
           {habit.name}
         </h2>
+        {showCalendar && (
+          <calendar-date
+            ref={calendarRef}
+            class="cally bg-base-100 border border-base-300 shadow-lg rounded-box"
+          >
+            <svg
+              aria-label="Previous"
+              className="fill-current size-4"
+              slot="previous"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+            </svg>
+            <svg
+              aria-label="Next"
+              className="fill-current size-4"
+              slot="next"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+            </svg>
+            <calendar-month></calendar-month>
+          </calendar-date>
+        )}
         <svg
-          className={`w-6 h-6 ${textColor}`}
+          className={`w-6 h-6 ${textColor} cursor-pointer`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          onClick={() => addEntry({ categoryId: habit.id, entry })}
+          onClick={handleIconClick}
         >
           <path
             strokeLinecap="round"
