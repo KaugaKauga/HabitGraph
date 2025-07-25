@@ -17,9 +17,7 @@ const HabitSection = ({ habit }: HabitProps) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const calendarRef = useRef<any>(null);
 
-  const handleDateSelect = (event: any) => {
-    console.log("Date selected:", event);
-    const selectedDate = event.target.value;
+  const handleDateSelect = (selectedDate: string) => {
     console.log("Selected date value:", selectedDate);
     if (selectedDate) {
       const entry = { id: nanoid(), categoryId: habit.id, date: selectedDate };
@@ -58,6 +56,7 @@ const HabitSection = ({ habit }: HabitProps) => {
           <div className="modal-box">
             <h3 className="font-bold text-lg mb-4">Select Date</h3>
             <calendar-date
+              onchange={(event) => handleDateSelect(event.target.value)}
               ref={calendarRef}
               class="cally bg-base-100 border border-base-300 shadow-lg rounded-box w-full"
             >
