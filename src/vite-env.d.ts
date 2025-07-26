@@ -24,4 +24,8 @@ declare module "react" {
         React.HTMLAttributes<HTMLElement>;
     }
   }
+
+  interface SVGProps<T> extends AriaAttributes, DOMAttributes<T> {
+    slot?: string;
+  }
 }

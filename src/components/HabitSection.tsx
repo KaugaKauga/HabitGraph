@@ -4,8 +4,9 @@ import { getTextColorClass } from "../utils/colorUtils";
 import { nanoid } from "nanoid";
 import { Graph } from "./Graph";
 import { useNavigate } from "@tanstack/react-router";
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import "cally";
+
 type HabitProps = {
   habit: Habit;
 };
@@ -15,7 +16,6 @@ const HabitSection = ({ habit }: HabitProps) => {
   const textColor = getTextColorClass(habit.color);
   const { addEntry } = useGraphStore();
   const [showCalendar, setShowCalendar] = useState(false);
-  const calendarRef = useRef<any>(null);
 
   const handleDateSelect = (selectedDate: string) => {
     console.log("Selected date value:", selectedDate);
@@ -25,16 +25,6 @@ const HabitSection = ({ habit }: HabitProps) => {
       setShowCalendar(false);
     }
   };
-
-  useEffect(() => {
-    const calendar = calendarRef.current;
-    if (calendar && showCalendar) {
-      calendar.addEventListener("change", handleDateSelect);
-      return () => {
-        calendar.removeEventListener("change", handleDateSelect);
-      };
-    }
-  }, [showCalendar, habit.id]);
 
   const handleIconClick = () => {
     setShowCalendar(!showCalendar);
@@ -51,14 +41,14 @@ const HabitSection = ({ habit }: HabitProps) => {
         >
           {habit.name}
         </h2>
-        {/* DaisyUI Modal */}
         <div className={`modal ${showCalendar ? "modal-open" : ""}`}>
           <div className="modal-box">
             <h3 className="font-bold text-lg mb-4">Select Date</h3>
             <calendar-date
-              onchange={(event) => handleDateSelect(event.target.value)}
-              ref={calendarRef}
-              class="cally bg-base-100 border border-base-300 shadow-lg rounded-box w-full"
+              onchange={(event) =>
+                handleDateSelect((event.target as HTMLInputElement).value)
+              }
+              className="cally bg-base-100 border border-base-300 shadow-lg rounded-box w-full"
             >
               <svg
                 aria-label="Previous"
