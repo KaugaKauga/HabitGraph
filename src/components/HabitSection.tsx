@@ -43,7 +43,9 @@ const HabitSection = ({ habit }: HabitProps) => {
         </h2>
         <div className={`modal ${showCalendar ? "modal-open" : ""}`}>
           <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4">Select Date</h3>
+            <h3 className="font-bold text-lg mb-4">
+              Select Date for: {habit.name}
+            </h3>
             <calendar-date
               onchange={(event) =>
                 handleDateSelect((event.target as HTMLInputElement).value)
