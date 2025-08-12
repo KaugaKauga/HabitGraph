@@ -13,6 +13,7 @@ export type Habit = {
   data: HabitEntry[];
   isHigherBetter: boolean;
   isTrueFalse: boolean;
+  createdAt: string;
 };
 
 export type HabitSlice = {

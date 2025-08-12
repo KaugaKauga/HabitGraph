@@ -22,6 +22,7 @@ const useGraphStore = create<HabitSlice>()(
             isHigherBetter,
             name,
             data: [],
+            createdAt: new Date().toISOString(),
           };
           return {
             graphs: {
