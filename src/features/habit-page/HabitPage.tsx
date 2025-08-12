@@ -5,11 +5,11 @@ import arrowLeft from "../../assets/arrow-left.svg";
 import {
   compareLastNDaysWithPrevious,
   getCurrentStreak,
-  getEntriesFromLastNDays,
   getEntriesSinceStart,
   getLongestStreak,
 } from "./habitAnalytics";
 import { getTextColorClass } from "../../utils/colorUtils";
+import { StatDisplay } from "../../components/StatDisplay";
 
 const HabitPage = () => {
   const { habitId } = Route.useParams();
@@ -54,55 +54,46 @@ const HabitPage = () => {
       <div className="flex-1 overflow-y-auto p-2">
         <div className="grid grid-cols-2 gap-4 justify-center items-start">
           {habit.isTrueFalse && (
-            <div className="stats">
-              <div className="stat place-items-center">
-                <div className="stat-title">Current streak</div>
-                <div className={`stat-value ${textColor}`}>{currentStreak}</div>
-                <div className="stat-desc">Longest: {longestStreak}</div>
-              </div>
-            </div>
+            <StatDisplay
+              title="Current streak"
+              stat={`${currentStreak}`}
+              subTitle={`Longest: ${longestStreak}`}
+              textColor={textColor}
+            />
           )}
-          <div className="stats">
-            <div className="stat place-items-center">
-              <div className="stat-title">Seven Days</div>
-              <div className={`stat-value ${textColor}`}>{sevenCurrent}</div>
-              <div className="stat-desc">
-                {sevenIsImprovement ? "↗︎" : "↘︎"} {sevenChange}% (
-                {sevenPrevious})
-              </div>
-            </div>
-          </div>
-          <div className="stats">
-            <div className="stat place-items-center">
-              <div className="stat-title">Thirty days</div>
-              <div className={`stat-value ${textColor}`}>{thirtyCurrent}</div>
-              <div className="stat-desc">
-                {thirtyIsImprovement ? "↗︎" : "↘︎"} {thirtyChange}% (
-                {thirtyPrevious})
-              </div>
-            </div>
-          </div>
-          <div className="stats">
-            <div className="stat place-items-center">
-              <div className="stat-title">Ninety days</div>
-              <div className={`stat-value ${textColor}`}>{ninetyCurrent}</div>
-              <div className="stat-desc">
-                {ninetyIsImprovement ? "↗︎" : "↘︎"} {ninetyChange}% (
-                {ninetyPrevious})
-              </div>
-            </div>
-          </div>
-          <div className="stats">
-            <div className="stat place-items-center">
-              <div className="stat-title">Since start</div>
-              <div className={`stat-value ${textColor}`}>{sinceStart}</div>
-            </div>
-          </div>
+          <StatDisplay
+            title="Seven Days"
+            stat={`${sevenCurrent}`}
+            subTitle={`${sevenIsImprovement ? "↗︎" : "↘︎"} ${sevenChange}% (
+            ${sevenPrevious})`}
+            textColor={textColor}
+          />
+          <StatDisplay
+            title="Thirty Days"
+            stat={`${thirtyCurrent}`}
+            subTitle={`${thirtyIsImprovement ? "↗︎" : "↘︎"} ${thirtyChange}% (
+            ${thirtyPrevious})`}
+            textColor={textColor}
+          />
+          <StatDisplay
+            title="Ninety Days"
+            stat={`${ninetyCurrent}`}
+            subTitle={`${ninetyIsImprovement ? "↗︎" : "↘︎"} ${ninetyChange}% (
+            ${ninetyPrevious})`}
+            textColor={textColor}
+          />
+          <StatDisplay
+            title="Since start"
+            stat={`${sinceStart}`}
+            textColor={textColor}
+          />
         </div>
-        <div className="flex items-center justify-between">
-          <h2 className="stat">
-            Created : {new Date(habit.createdAt).toLocaleDateString() ?? "-"}
-          </h2>
+        <div className="flex items-center justify-center">
+          <StatDisplay
+            title="Created"
+            stat={`${new Date(habit.createdAt).toLocaleDateString() ?? "-"}`}
+            textColor={textColor}
+          />
         </div>
       </div>
     </div>
