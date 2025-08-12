@@ -153,6 +153,46 @@ export const compareLastNDaysWithPrevious = (habit: Habit, days: number) => {
 };
 
 /**
+ * Determines if the user has dark mode enabled
+ * Checks both the DaisyUI data-theme attribute and system preference
+ * @returns true if dark mode is active, false otherwise
+ */
+export const isDarkMode = (): boolean => {
+  // First check if DaisyUI theme is explicitly set
+  const daisyTheme = document.documentElement.getAttribute("data-theme");
+  if (daisyTheme) {
+    // List of DaisyUI dark themes
+    const darkThemes = [
+      "dark",
+      "synthwave",
+      "halloween",
+      "forest",
+      "black",
+      "luxury",
+      "dracula",
+      "business",
+      "night",
+      "coffee",
+    ];
+    return darkThemes.includes(daisyTheme);
+  }
+
+  // Fall back to system preference
+  return (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
+};
+
+/**
+ * Gets the current theme name (light/dark)
+ * @returns 'dark' or 'light'
+ */
+export const getCurrentTheme = (): "dark" | "light" => {
+  return isDarkMode() ? "dark" : "light";
+};
+
+/**
  * Gets entries from the last 7 days
  */
 export const getEntriesLastSevenDays = (habit: Habit): number => {

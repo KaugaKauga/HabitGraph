@@ -72,13 +72,18 @@ const Graph = ({ color = "purple", entries }: GraphProps) => {
             const day = renderData[dayIndex];
 
             if (!day) {
-              return <div key={rowIndex} className="w-3 h-3 bg-stone-100" />;
+              return (
+                <div
+                  key={rowIndex}
+                  className="w-3 h-3 bg-stone-100 opacity-10"
+                />
+              );
             }
 
             const baseClasses = "w-3 h-3 hover:shadow-md";
             const colorClasses = day.isFuture
-              ? "bg-stone-100 opacity-30"
-              : getColorClass(day.count, color);
+              ? "opacity-0"
+              : `${getColorClass(day.count, color)} ${!day.count && "dark:opacity-20 opacity-80"}`;
 
             return (
               <div
