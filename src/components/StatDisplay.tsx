@@ -12,9 +12,9 @@ const StatDisplay = ({
   return (
     <div className="stats">
       <div className="stat place-items-center">
-        <div className="stat-title dark:text-blue-200">{title}</div>
+        <div className="stat-title">{title}</div>
         <div className={`stat-value ${textColor}`}>{stat}</div>
-        <div className="stat-desc dark:text-blue-200">{subTitle}</div>
+        <div className="stat-desc">{subTitle}</div>
       </div>
     </div>
   );

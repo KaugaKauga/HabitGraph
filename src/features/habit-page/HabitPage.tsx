@@ -54,9 +54,7 @@ const HabitPage = () => {
         <Link className="link" to="/">
           <img src={arrowSrc} alt="Home" className="size-[1.2em]" />
         </Link>
-        <h2 className={`text-2xl font-bold lowercase dark:text-blue-200`}>
-          {habit.name}
-        </h2>
+        <h2 className={`text-2xl font-bold lowercase`}>{habit.name}</h2>
         <div className="flex flex-col"></div>
       </div>
       <div className="flex-1 overflow-y-auto p-2">
