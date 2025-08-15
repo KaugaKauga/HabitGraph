@@ -79,7 +79,7 @@ const CreateHabit = () => {
         <div className="flex gap-4 flex-wrap">
           {colorTypes.map((color) => (
             <div
-              className={`${getColorClass(3, color)} ${color === selectedColor ? "w-6 h-6" : "w-4 h-4"}`}
+              className={`${getColorClass(2, color)} ${color === selectedColor ? "w-6 h-6" : "w-4 h-4"}`}
               key={color}
               onClick={() => setColor(color)}
             />

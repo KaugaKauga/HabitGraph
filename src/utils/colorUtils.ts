@@ -250,11 +250,11 @@ const colorMap: Record<ColorType, Record<number, string>> = {
 export const getColorClass = (
   count: number,
   color: ColorType = "purple",
-  habit: Habit,
+  habit?: Habit,
 ): string => {
   const _count = count > 7 ? 7 : count;
 
-  if (habit.isTrueFalse && _count > 0) {
+  if (habit && habit.isTrueFalse && _count > 0) {
     return colorMap[color][2];
   }
   return colorMap[color][_count] || colorMap[color][0];
@@ -290,11 +290,6 @@ export const getTextColorClass = (color: ColorType = "purple"): string => {
 };
 
 export const colorTypes: ColorType[] = [
-  "slate",
-  "gray",
-  "zinc",
-  "neutral",
-  "stone",
   "red",
   "orange",
   "amber",
@@ -312,4 +307,9 @@ export const colorTypes: ColorType[] = [
   "fuchsia",
   "pink",
   "rose",
+  "slate",
+  "gray",
+  "zinc",
+  "neutral",
+  "stone",
 ];
