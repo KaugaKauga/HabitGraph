@@ -115,6 +115,19 @@ const useGraphStore = create<AppSlice>()(
       addEntry: ({ entry, categoryId }) =>
         set((state) => {
           const graph = state.graphs[categoryId];
+
+          if (graph.isTrueFalse) {
+            const entryDate = new Date(entry.date).toDateString();
+            const hasExistingEntry = graph.data.some(
+              (existingEntry) =>
+                new Date(existingEntry.date).toDateString() === entryDate,
+            );
+
+            if (hasExistingEntry) {
+              return state; // Block the entry
+            }
+          }
+
           if (graph) {
             return {
               graphs: {

@@ -1,9 +1,10 @@
-import { HabitEntry } from "../types";
+import { Habit, HabitEntry } from "../types";
 import { ColorType, getColorClass } from "../utils/colorUtils";
 
 type GraphProps = {
   color?: ColorType;
   entries: HabitEntry[];
+  habit: Habit;
 };
 
 const generateGraphDays = () => {
@@ -59,7 +60,7 @@ const prepareGraphData = (days: Date[], entries: HabitEntry[]) => {
   }));
 };
 
-const Graph = ({ color = "purple", entries }: GraphProps) => {
+const Graph = ({ color = "purple", entries, habit }: GraphProps) => {
   const days = generateGraphDays();
   const renderData = prepareGraphData(days, entries);
 
@@ -83,7 +84,7 @@ const Graph = ({ color = "purple", entries }: GraphProps) => {
             const baseClasses = "w-3 h-3 hover:shadow-md";
             const colorClasses = day.isFuture
               ? "opacity-0"
-              : `${getColorClass(day.count, color)} ${!day.count && "dark:opacity-20 opacity-80"}`;
+              : `${getColorClass(day.count, color, habit)} ${!day.count && "dark:opacity-20 opacity-80"}`;
 
             return (
               <div

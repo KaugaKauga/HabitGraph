@@ -48,7 +48,7 @@ const CreateHabit = () => {
             ref={nameRef}
             type="text"
             className="input w-full"
-            placeholder="Name of the habit I want to track"
+            placeholder="Name of the habit to track"
             minLength={2}
             maxLength={20}
           />

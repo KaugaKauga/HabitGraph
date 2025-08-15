@@ -18,7 +18,6 @@ const HabitSection = ({ habit }: HabitProps) => {
   const [showCalendar, setShowCalendar] = useState(false);
 
   const handleDateSelect = (selectedDate: string) => {
-    console.log("Selected date value:", selectedDate);
     if (selectedDate) {
       const entry = { id: nanoid(), categoryId: habit.id, date: selectedDate };
       addEntry({ categoryId: habit.id, entry });
@@ -102,7 +101,7 @@ const HabitSection = ({ habit }: HabitProps) => {
           />
         </svg>
       </div>
-      <Graph color={habit.color} entries={habit.data} />
+      <Graph color={habit.color} entries={habit.data} habit={habit} />
     </div>
   );
 };
