@@ -20,13 +20,13 @@ export type ThemeMode = "light" | "dark" | "system";
 
 export type ThemeState = {
   manualTheme: ThemeMode;
-  effectiveTheme: "light" | "dark";
+  effectiveTheme: "cupcake" | "synthwave";
 };
 
 export type ThemeSlice = {
   theme: ThemeState;
   setTheme: (theme: ThemeMode) => void;
-  getEffectiveTheme: () => "light" | "dark";
+  getEffectiveTheme: () => "cupcake" | "synthwave";
   initializeTheme: () => void;
 };
 

@@ -11,3 +11,35 @@ body,
   height: 100%;
   margin: 0;
 }
+
+/* iOS PWA Safe Area and Status Bar Styling */
+@supports (padding: max(0px)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Ensure theme colors extend to safe areas */
+html[data-theme="cupcake"] {
+  background-color: #faf7f5;
+  color-scheme: light;
+}
+
+html[data-theme="synthwave"] {
+  background-color: #1a103d;
+  color-scheme: dark;
+}
+
+/* iOS status bar area background matching */
+@media (display-mode: standalone) {
+  html[data-theme="cupcake"] {
+    background: #faf7f5;
+  }
+
+  html[data-theme="synthwave"] {
+    background: #1a103d;
+  }
+}

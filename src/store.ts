@@ -3,6 +3,20 @@ import { persist } from "zustand/middleware";
 import { Habit, AppSlice, ThemeMode } from "./types";
 import { nanoid } from "nanoid";
 
+// Theme colors for meta tag updates
+const themeColors = {
+  cupcake: "#faf7f5",
+  synthwave: "#1a103d",
+};
+
+// Function to update theme-color meta tag
+const updateThemeColorMeta = (theme: "cupcake" | "synthwave") => {
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute("content", themeColors[theme]);
+  }
+};
+
 const useGraphStore = create<AppSlice>()(
   persist(
     (set, get) => ({
@@ -10,7 +24,7 @@ const useGraphStore = create<AppSlice>()(
       // Theme state
       theme: {
         manualTheme: "system" as ThemeMode,
-        effectiveTheme: "light" as "light" | "dark",
+        effectiveTheme: "cupcake" as "cupcake" | "synthwave",
       },
       // Theme actions
       setTheme: (theme: ThemeMode) => {
@@ -19,15 +33,20 @@ const useGraphStore = create<AppSlice>()(
             theme === "system"
               ? window.matchMedia &&
                 window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light"
-              : (theme as "light" | "dark");
+                ? "synthwave"
+                : "cupcake"
+              : theme === "dark"
+                ? "synthwave"
+                : "cupcake";
 
           // Update DOM immediately
           document.documentElement.setAttribute(
             "data-theme",
             newEffectiveTheme,
           );
+
+          // Update theme-color meta tag for iOS
+          updateThemeColorMeta(newEffectiveTheme);
 
           return {
             theme: {
@@ -46,12 +65,17 @@ const useGraphStore = create<AppSlice>()(
           theme.manualTheme === "system"
             ? window.matchMedia &&
               window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light"
-            : (theme.manualTheme as "light" | "dark");
+              ? "synthwave"
+              : "cupcake"
+            : theme.manualTheme === "dark"
+              ? "synthwave"
+              : "cupcake";
 
         // Update DOM
         document.documentElement.setAttribute("data-theme", effectiveTheme);
+
+        // Update theme-color meta tag for iOS
+        updateThemeColorMeta(effectiveTheme);
 
         // Update state if needed
         if (theme.effectiveTheme !== effectiveTheme) {

@@ -16,7 +16,8 @@ const CreateHabit = () => {
   const higherIsBetterRef = useRef<HTMLInputElement>(null);
   const [selectedColor, setColor] = useState<ColorType>("indigo");
 
-  const arrowLeftIcon = effectiveTheme === "dark" ? arrowLeftDark : arrowLeft;
+  const arrowLeftIcon =
+    effectiveTheme === "synthwave" ? arrowLeftDark : arrowLeft;
 
   const handleCreate = () => {
     const name = nameRef.current?.value.trim();

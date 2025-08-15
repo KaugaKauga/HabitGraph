@@ -11,8 +11,8 @@ function App() {
     graphs,
     theme: { effectiveTheme },
   } = useGraphStore();
-  const plusSrc = effectiveTheme === "dark" ? plusDark : plus;
-  const gearSixSrc = effectiveTheme === "dark" ? gearSixDark : gear;
+  const plusSrc = effectiveTheme === "synthwave" ? plusDark : plus;
+  const gearSixSrc = effectiveTheme === "synthwave" ? gearSixDark : gear;
 
   return (
     <div className="flex flex-col h-full justify-center">

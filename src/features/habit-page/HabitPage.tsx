@@ -21,7 +21,7 @@ const HabitPage = () => {
   const habit = getHabitById({ habitId });
   const textColor = getTextColorClass(habit.color);
 
-  const arrowSrc = effectiveTheme === "dark" ? arrowLeftDark : arrowLeft;
+  const arrowSrc = effectiveTheme === "synthwave" ? arrowLeftDark : arrowLeft;
 
   const {
     current: sevenCurrent,
