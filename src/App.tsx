@@ -1,10 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { HabitSection } from "./components/HabitSection";
 import { useGraphStore } from "./store";
-import chartBar from "./assets/chart-bar.svg";
 import gear from "./assets/gear.svg";
 import plus from "./assets/plus.svg";
-import chartBarDark from "./assets/chart-bar-dark.svg";
 import plusDark from "./assets/plus-dark.svg";
 import gearSixDark from "./assets/gear-six-dark.svg";
 
@@ -13,8 +11,6 @@ function App() {
     graphs,
     theme: { effectiveTheme },
   } = useGraphStore();
-
-  const chartBarSrc = effectiveTheme === "dark" ? chartBarDark : chartBar;
   const plusSrc = effectiveTheme === "dark" ? plusDark : plus;
   const gearSixSrc = effectiveTheme === "dark" ? gearSixDark : gear;
 
@@ -23,9 +19,6 @@ function App() {
       <div className="flex justify-between mb-8">
         <Link className="link" to="/settings">
           <img src={gearSixSrc} alt="Settings" className="size-[1.2em]" />
-        </Link>
-        <Link className="link text-sand-300" to="/statistics">
-          <img src={chartBarSrc} alt="Statistics" className="size-[1.2em]" />
         </Link>
         <Link className="link" to="/create-habit">
           <img src={plusSrc} alt="Add Category" className="size-[1.2em]" />

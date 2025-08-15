@@ -11,19 +11,12 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as StatisticsImport } from './routes/statistics'
 import { Route as SettingsImport } from './routes/settings'
 import { Route as CreateHabitImport } from './routes/create-habit'
 import { Route as IndexImport } from './routes/index'
 import { Route as HabitHabitIdImport } from './routes/habit.$habitId'
 
 // Create/Update Routes
-
-const StatisticsRoute = StatisticsImport.update({
-  id: '/statistics',
-  path: '/statistics',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const SettingsRoute = SettingsImport.update({
   id: '/settings',
@@ -74,13 +67,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsImport
       parentRoute: typeof rootRoute
     }
-    '/statistics': {
-      id: '/statistics'
-      path: '/statistics'
-      fullPath: '/statistics'
-      preLoaderRoute: typeof StatisticsImport
-      parentRoute: typeof rootRoute
-    }
     '/habit/$habitId': {
       id: '/habit/$habitId'
       path: '/habit/$habitId'
@@ -97,7 +83,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/create-habit': typeof CreateHabitRoute
   '/settings': typeof SettingsRoute
-  '/statistics': typeof StatisticsRoute
   '/habit/$habitId': typeof HabitHabitIdRoute
 }
 
@@ -105,7 +90,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/create-habit': typeof CreateHabitRoute
   '/settings': typeof SettingsRoute
-  '/statistics': typeof StatisticsRoute
   '/habit/$habitId': typeof HabitHabitIdRoute
 }
 
@@ -114,27 +98,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/create-habit': typeof CreateHabitRoute
   '/settings': typeof SettingsRoute
-  '/statistics': typeof StatisticsRoute
   '/habit/$habitId': typeof HabitHabitIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/create-habit'
-    | '/settings'
-    | '/statistics'
-    | '/habit/$habitId'
+  fullPaths: '/' | '/create-habit' | '/settings' | '/habit/$habitId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/create-habit' | '/settings' | '/statistics' | '/habit/$habitId'
-  id:
-    | '__root__'
-    | '/'
-    | '/create-habit'
-    | '/settings'
-    | '/statistics'
-    | '/habit/$habitId'
+  to: '/' | '/create-habit' | '/settings' | '/habit/$habitId'
+  id: '__root__' | '/' | '/create-habit' | '/settings' | '/habit/$habitId'
   fileRoutesById: FileRoutesById
 }
 
@@ -142,7 +114,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreateHabitRoute: typeof CreateHabitRoute
   SettingsRoute: typeof SettingsRoute
-  StatisticsRoute: typeof StatisticsRoute
   HabitHabitIdRoute: typeof HabitHabitIdRoute
 }
 
@@ -150,7 +121,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreateHabitRoute: CreateHabitRoute,
   SettingsRoute: SettingsRoute,
-  StatisticsRoute: StatisticsRoute,
   HabitHabitIdRoute: HabitHabitIdRoute,
 }
 
@@ -167,7 +137,6 @@ export const routeTree = rootRoute
         "/",
         "/create-habit",
         "/settings",
-        "/statistics",
         "/habit/$habitId"
       ]
     },
@@ -179,9 +148,6 @@ export const routeTree = rootRoute
     },
     "/settings": {
       "filePath": "settings.tsx"
-    },
-    "/statistics": {
-      "filePath": "statistics.tsx"
     },
     "/habit/$habitId": {
       "filePath": "habit.$habitId.tsx"
