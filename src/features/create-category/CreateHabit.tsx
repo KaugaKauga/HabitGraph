@@ -3,14 +3,20 @@ import { useGraphStore } from "../../store";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { ColorType, colorTypes, getColorClass } from "../../utils/colorUtils";
 import arrowLeft from "../../assets/arrow-left.svg";
+import arrowLeftDark from "../../assets/arrow-left-dark.svg";
 
 const CreateHabit = () => {
-  const { addGraph } = useGraphStore();
+  const {
+    addGraph,
+    theme: { effectiveTheme },
+  } = useGraphStore();
   const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement>(null);
   const trueFalseRef = useRef<HTMLInputElement>(null);
   const higherIsBetterRef = useRef<HTMLInputElement>(null);
   const [selectedColor, setColor] = useState<ColorType>("indigo");
+
+  const arrowLeftIcon = effectiveTheme === "dark" ? arrowLeftDark : arrowLeft;
 
   const handleCreate = () => {
     const name = nameRef.current?.value.trim();
@@ -18,7 +24,7 @@ const CreateHabit = () => {
     const isHigherBetter = higherIsBetterRef.current?.checked || false;
 
     if (!name) {
-      alert("Please enter a habit name.");
+      alert(`A habit needs a name 🤔`);
       nameRef.current?.focus();
       return;
     }
@@ -31,7 +37,7 @@ const CreateHabit = () => {
     <div className="flex flex-col h-full justify-center">
       <div className="flex justify-between mb-8">
         <Link className="link" to="/">
-          <img src={arrowLeft} alt="Home" className="size-[1.2em]" />
+          <img src={arrowLeftIcon} alt="Home" className="size-[1.2em]" />
         </Link>
       </div>
       <div className="flex-1 overflow-y-auto space-y-4 justify-center flex flex-col items-center p-2">
