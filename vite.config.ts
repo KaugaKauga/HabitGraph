@@ -10,4 +10,12 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    rollupOptions: {
+      // Ensure PWA files are included in build
+      input: {
+        main: "./index.html",
+      },
+    },
+  },
 });

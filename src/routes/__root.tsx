@@ -8,7 +8,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <React.Fragment>
-      <div className="min-h-screen w-full bg-stone-100 dark:bg-gray-900 flex justify-center p-4">
+      <div className="min-h-screen w-full bg-stone-100 dark:bg-blue-950 flex justify-center p-4">
         <div className="w-full max-w-md flex flex-col flex-grow">
           <Outlet />
         </div>
