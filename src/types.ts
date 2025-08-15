@@ -16,6 +16,20 @@ export type Habit = {
   createdAt: string;
 };
 
+export type ThemeMode = "light" | "dark" | "system";
+
+export type ThemeState = {
+  manualTheme: ThemeMode;
+  effectiveTheme: "light" | "dark";
+};
+
+export type ThemeSlice = {
+  theme: ThemeState;
+  setTheme: (theme: ThemeMode) => void;
+  getEffectiveTheme: () => "light" | "dark";
+  initializeTheme: () => void;
+};
+
 export type HabitSlice = {
   graphs: { [key: string]: Habit };
   addEntry: ({
@@ -38,3 +52,5 @@ export type HabitSlice = {
     color: ColorType;
   }) => void;
 };
+
+export type AppSlice = HabitSlice & ThemeSlice;

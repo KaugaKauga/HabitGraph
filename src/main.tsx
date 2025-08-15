@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { useGraphStore } from "./store";
 import "./index.css";
 
 // Import the generated route tree
@@ -15,6 +16,20 @@ declare module "@tanstack/react-router" {
     router: typeof router;
   }
 }
+
+// Initialize theme system
+useGraphStore.getState().initializeTheme();
+
+// Listen for system theme changes when using "system" preference
+window
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", () => {
+    const { theme, setTheme } = useGraphStore.getState();
+    if (theme.manualTheme === "system") {
+      // Re-apply system theme when system preference changes
+      setTheme("system");
+    }
+  });
 
 // Render the app
 const rootElement = document.getElementById("root")!;

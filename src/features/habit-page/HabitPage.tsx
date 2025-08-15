@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Route } from "../../routes/habit.$habitId";
 import { useGraphStore } from "../../store";
 import arrowLeft from "../../assets/arrow-left.svg";
+import arrowLeftDark from "../../assets/arrow-left-dark.svg";
 import {
   compareLastNDaysWithPrevious,
   getCurrentStreak,
@@ -13,9 +14,14 @@ import { StatDisplay } from "../../components/StatDisplay";
 
 const HabitPage = () => {
   const { habitId } = Route.useParams();
-  const { getHabitById } = useGraphStore();
+  const {
+    getHabitById,
+    theme: { effectiveTheme },
+  } = useGraphStore();
   const habit = getHabitById({ habitId });
   const textColor = getTextColorClass(habit.color);
+
+  const arrowSrc = effectiveTheme === "dark" ? arrowLeftDark : arrowLeft;
 
   const {
     current: sevenCurrent,
@@ -44,9 +50,9 @@ const HabitPage = () => {
 
   return (
     <div className="flex flex-col h-full justify-center">
-      <div className="flex justify-between mb-8">
+      <div className="flex justify-between mb-8 items-center">
         <Link className="link" to="/">
-          <img src={arrowLeft} alt="Home" className="size-[1.2em]" />
+          <img src={arrowSrc} alt="Home" className="size-[1.2em]" />
         </Link>
         <h2 className={`text-2xl font-bold lowercase dark:text-blue-200`}>
           {habit.name}
@@ -66,22 +72,19 @@ const HabitPage = () => {
           <StatDisplay
             title="Seven Days"
             stat={`${sevenCurrent}`}
-            subTitle={`${sevenIsImprovement ? "↗︎" : "↘︎"} ${sevenChange}% (
-            ${sevenPrevious})`}
+            subTitle={`${sevenIsImprovement ? "↗︎" : "↘︎"} ${sevenChange}% (${sevenPrevious})`}
             textColor={textColor}
           />
           <StatDisplay
             title="Thirty Days"
             stat={`${thirtyCurrent}`}
-            subTitle={`${thirtyIsImprovement ? "↗︎" : "↘︎"} ${thirtyChange}% (
-            ${thirtyPrevious})`}
+            subTitle={`${thirtyIsImprovement ? "↗︎" : "↘︎"} ${thirtyChange}% (${thirtyPrevious})`}
             textColor={textColor}
           />
           <StatDisplay
             title="Ninety Days"
             stat={`${ninetyCurrent}`}
-            subTitle={`${ninetyIsImprovement ? "↗︎" : "↘︎"} ${ninetyChange}% (
-            ${ninetyPrevious})`}
+            subTitle={`${ninetyIsImprovement ? "↗︎" : "↘︎"} ${ninetyChange}% (${ninetyPrevious})`}
             textColor={textColor}
           />
           <StatDisplay
